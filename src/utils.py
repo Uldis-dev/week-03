@@ -1,4 +1,18 @@
 def capitalize(text):
+    """
+    Pārveido teksta pirmo burtu par lielo, pārējos par mazajiem.
+
+    Args:
+    text (str): Apstrādājamā teksta virkne.
+
+    Returns:
+    str: Virkne ar lielo sākumburtu.
+
+    Example:
+    >>> capitalize("hello WORLD") 
+    "Hello world"
+    """
+        
     # 1. Validācija
     if not isinstance(text, str):
         raise TypeError("Ievadei jābūt teksta virknei!")
@@ -10,6 +24,23 @@ def capitalize(text):
     return text[0].upper() + text[1:].lower()
 
 def truncate(text, max_len=20):
+    """
+    Apgriež tekstu līdz norādītajam garumam.
+	
+	Args:
+    text (str): Apstrādājamā teksta virkne.
+	max_len (int): Līdz kādam garumam apgriezt tekstu (def=20)
+	
+	Returns:
+	str: Līdz noteiktajam garumam apgriezta teksta virkne
+	
+	Example:
+    >>> truncate("Hello, world, nice d")
+	"Hello, world, nice d"
+	>>> truncate("Hello, world, nice day today!", 18)
+	"Hello, world, nice"
+    """
+
     # 1. Validācija
     if not isinstance(text, str):
         raise TypeError("Ievadei jābūt teksta virknei!")
@@ -18,6 +49,22 @@ def truncate(text, max_len=20):
     return text[:max_len] 
 
 def count_words(text):
+    """
+    Saskaita vārdu skaitu tekstā, ignorējot liekās atstarpes.
+
+    Args:
+    text (str): Apstrādājamā teksta virkne.
+
+    Returns:
+    int: Vārdu skaits teksta virknē
+
+    Example:
+    >>> count_words("Sveika,   pasaule!")
+	2
+	>>> count_words("Hello, world, nice day today!")
+	5
+    """
+
     # 1. Validācija
     if not isinstance(text, str):
         raise TypeError("Ievadei jābūt teksta virknei!")   
@@ -27,6 +74,24 @@ def count_words(text):
     return len(words)
 
 def clamp(num, low, high):
+    """
+    Ierobežo skaitli noteiktā diapazonā [low, high].
+
+    Args:
+    num (int, float): Skaitlis, kuru pārbaudīt.
+    low (int, float): Apakšējā robeža.
+    high (int, float): Augšējā robeža.
+
+    Returns:
+    int, float: Ierobežotā vērtība.
+    
+    Example:
+    >>> clamp(150, 0, 100)
+	100
+    >>> clamp(-10, 0, 100)
+	0
+    """
+
     # 1. Validācija
     if not isinstance(num, (int, float)):
         raise TypeError("Pirmajam parametram 'num' jābūt skaitlim!")
@@ -50,6 +115,22 @@ def clamp(num, low, high):
     return num        
 
 def is_prime(num):
+    """
+    Pārbauda, vai skaitlis ir pirmskaitlis.
+	
+	Args:
+    num (int): Vesels skaitlis (lielāks par 1), kuru pārbaudīt
+	
+	Returns:
+	bool: True, ja ir pirmskaitlis, citādi False.
+	
+	Example:
+	>>> is_prime(10)
+	False
+	>>> is_prime(7)
+	True
+    """	
+
     # 1. Validācija 
     if not isinstance(num, int):
         raise TypeError("Pirmskaitļu pārbaudei jāizmanto vesels skaitlis!")    
@@ -71,6 +152,20 @@ def is_prime(num):
     return True
     
 def factorial(n):
+    """
+    Aprēķina skaitļa n faktoriālu (n!).
+    
+    Args:
+    n (int): Vesels skaitlis, kas nav mazāks par 0.
+    
+    Returns:
+    int: Faktoriāla vērtība.
+    
+    Example:
+    >>> factorial(5)
+	120
+    """	
+
     # 1. Validācija 
     if not isinstance(n, int):
         raise TypeError("Faktoriālu var aprēķināt tikai veselam skaitlim!")
@@ -92,6 +187,22 @@ def factorial(n):
 
 
 def total(numbers):
+    """
+    Aprēķina skaitļu saraksta kopējo summu, neizmantojot iebūvēto sum().
+    
+    Args:
+    numbers (list): Saraksts ar veseliem skaitļiem vai skaitļiem ar komatu.
+    
+    Returns:
+    float/int: Visu elementu summa.
+    
+    Example:
+    >>> total ([10, 20, 30])
+	60
+	>>> total ([1.5, 2.5, 10.0])
+	14.0
+    """
+
     # 1. Validācija: vai ievade ir saraksts
     if not isinstance(numbers, list):
         raise TypeError("Funkcijai jānodod saraksts (list)!")
@@ -109,6 +220,22 @@ def total(numbers):
     return result
 
 def average(numbers):
+    """
+    Aprēķina skaitļu saraksta vidējo aritmētisko vērtību.
+    
+    Args:
+    numbers (list): Saraksts ar veseliem skaitļiem vai skaitļiem ar komatu.
+    
+    Returns:
+    float: Vidējā vērtība vai 0.0, ja saraksts ir tukšs.
+	
+	Example:
+	>>> average ([10, 20, 30])
+	20.00
+	>>> Average ([1.5, 2.5, 10.0])
+	4.67
+    """	
+        
     # 1. Validācija: vai ievade ir saraksts
     if not isinstance(numbers, list):
         raise TypeError("Funkcijai jānodod saraksts (list)!")
@@ -142,7 +269,7 @@ if __name__ == "__main__":
     print(f"Ievade: {testa_teksts}")
 
     print(f"\nCapitalize: {capitalize(testa_teksts)}")
-    print(f"Truncate: {truncate(testa_teksts)}")
+    print(f"Truncate 19: {truncate(testa_teksts,19)}")
     print(f"Count words: {count_words(testa_teksts)}")  
 
     print("\n--- Skaitļu funkciju testēšana ---") 
