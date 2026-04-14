@@ -96,9 +96,3 @@ print(f"\n--- Studenti ar atzīmi >= 80 ---")
 # npk - indekss (sākam no 1), ieraksts - vārdnīca (elements no saraksta)
 for npk, ieraksts in enumerate(top_students, start=1):
     print(f"{npk}. {ieraksts['name']} — {ieraksts['grade']}")
-
-
-
-# --- Studenti ar atzīmi >= 80 ---
-# 1. Anna — 85
-# 2. Līga — 95
