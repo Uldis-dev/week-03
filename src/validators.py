@@ -163,3 +163,73 @@ def is_valid_date(text):
     return True     # Ja izietas visas iepriekšējās pārbaudes, tad datums ir derīgs
 
 
+
+if __name__ == "__main__":
+    # Šeit testējam funkcijas
+
+    
+    print("--- Funkciju testēšana ---")
+
+
+    testa_teksts = 'anna@inbox.lv'
+    print(f"\nIs email ({testa_teksts}) : {is_email(testa_teksts)}")
+
+    testa_teksts = 'anna'
+    print(f"Is email ({testa_teksts}) : {is_email(testa_teksts)}")
+
+    testa_teksts = 'anna@inbox.'
+    print(f"Is email ({testa_teksts}) : {is_email(testa_teksts)}")
+
+    testa_teksts = '@inbox'
+    print(f"Is email ({testa_teksts}) : {is_email(testa_teksts)}")        
+
+
+    testa_teksts = '@inbox'
+    print(f"\nIs phone number ({testa_teksts}) : {is_phone_number(testa_teksts)}") 
+
+    testa_teksts = '+371 26123456'
+    print(f"Is phone number ({testa_teksts}) : {is_phone_number(testa_teksts)}")    
+
+    testa_teksts = '26123456'
+    print(f"Is phone number ({testa_teksts}) : {is_phone_number(testa_teksts)}")    
+
+    testa_teksts = '+371 2612345a'
+    print(f"Is phone number ({testa_teksts}) : {is_phone_number(testa_teksts)}")                       
+
+
+    testa_skaitlis = 'desmit'
+    print(f"\nIs valid age ({testa_skaitlis}) : {is_valid_age(testa_skaitlis)}") 
+
+    testa_skaitlis = '10g'
+    print(f"Is valid age ({testa_skaitlis}) : {is_valid_age(testa_skaitlis)}") 
+
+    testa_skaitlis = 34.5
+    print(f"Is valid age ({testa_skaitlis}) : {is_valid_age(testa_skaitlis)}") 
+
+    testa_skaitlis = 10
+    print(f"Is valid age ({testa_skaitlis}) : {is_valid_age(testa_skaitlis)}") 
+
+    testa_skaitlis = -10
+    print(f"Is valid age ({testa_skaitlis}) : {is_valid_age(testa_skaitlis)}")                 
+
+
+    testa_teksts = '1234'
+    print(f"\nIs strong password ({testa_teksts}) : {is_strong_password(testa_teksts)}") 
+
+    testa_teksts = '12345678'
+    print(f"Is strong password ({testa_teksts}) : {is_strong_password(testa_teksts)}") 
+
+    testa_teksts = '1234567a'
+    print(f"Is strong password ({testa_teksts}) : {is_strong_password(testa_teksts)}")         
+
+
+    testa_teksts = '2026-26-aprīlis'
+    print(f"\nIs valid date ({testa_teksts}) : {is_valid_date(testa_teksts)}") 
+
+    testa_teksts = '26.04.2026'
+    print(f"Is valid date ({testa_teksts}) : {is_valid_date(testa_teksts)}")    
+
+    testa_teksts = '2026-04-26'
+    print(f"Is valid date ({testa_teksts}) : {is_valid_date(testa_teksts)}")         
+
+
