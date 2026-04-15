@@ -32,8 +32,8 @@ def is_email(text):
 
 
 def is_phone_number(text):
-	"""
-	Pārbauda vai ievadītais teksts atbilst Latvijas telefona numura formātam: +371 XXXXXXXX (8 cipari)
+    """
+    Pārbauda vai ievadītais teksts atbilst Latvijas telefona numura formātam: +371 XXXXXXXX (8 cipari)
 	
 	Args:
 	text(str): Apstrādājamā teksta virkne - telefona numurs
@@ -48,9 +48,9 @@ def is_phone_number(text):
 	False
 	>>> is_phone_number('+371 2612345')
 	False
-	"""
-         
-    if not isinstance(text,str):        # Pārbaude, vai virkne ir teksts
+    """
+
+    if not isinstance(text,str):  # Pārbaude, vai virkne ir teksts
         return False
 
     if not text.startswith("+371 "):        # Pārbaude, vai sākas ar valsts kodu
@@ -62,7 +62,7 @@ def is_phone_number(text):
 
 
 def is_valid_age(age):
-	"""
+    """
 	Pārbauda vai ievadītais veselais skaitlis atbilst vecums (robežās 0-150)
 	
 	Args:
@@ -80,8 +80,8 @@ def is_valid_age(age):
 	True
 	>>> is_valid_age(-10)
 	False
-	"""
-         
+    """
+     
     if not isinstance(age, int):        #Pārbaude, vai ir vesels skaitlis
         return False
     
@@ -90,7 +90,7 @@ def is_valid_age(age):
 
 
 def is_strong_password(text):
-	"""
+    """
 	Pārbauda vai ievadītais teksts ir droša parole:
 	- vismaz 8 simboli
 	- satur burtus un ciparus
@@ -108,10 +108,11 @@ def is_strong_password(text):
 	False
 	>>> is_strong_password('1234567a')
 	True
-	"""
-         
-    if not isinstance(text, str) or len(text) < 8:    # Pārbaude, vai virkne ir teksts un vismaz 8 simbolus garš
+    """
 
+    if not isinstance(text, str) or len(text) < 8:    # Pārbaude, vai virkne ir teksts un vismaz 8 simbolus garš
+        return False
+    
     has_digit = False
     for char in text:       # Pārbaude, vai virknē ir kāds cipars
         if char.isdigit():
@@ -129,7 +130,7 @@ def is_strong_password(text):
 
 
 def is_valid_date(text):
-	"""
+    """
 	Pārbauda vai ievadītais teksts atbilst datuma formātam YYYY-MM-DD 
 	
 	Args:
@@ -145,8 +146,8 @@ def is_valid_date(text):
 	False
 	>>> is_valid_date('2026-04-26')
 	True
-	"""
-         
+    """
+
     if not isinstance(text, str) or len(text) != 10:     # Pārbaude, vai virkne ir teksts un tieši 10 simbolus garš
         return False
     
@@ -160,7 +161,5 @@ def is_valid_date(text):
             return False
         
     return True     # Ja izietas visas iepriekšējās pārbaudes, tad datums ir derīgs
-    
-
 
 
