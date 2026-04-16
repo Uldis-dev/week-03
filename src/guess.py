@@ -1,49 +1,43 @@
 import random
+from guess_utils import get_valid_int, ask_yes_no
+from guess_logic import check_guess, get_status_message
 
-while True:  # Ārējais cikls - spēles atkārtošanai
-    # Ģenerējam jaunu skaitli katrai spēlei
-    MINAMAIS_SKAITLIS = random.randint(1, 100)
-    MEGINAJUMU_SKAITS = 0
-    MAX_MEGINAJUMU_SKAITS = 10
-    UZMINETS = False
+def play_round():
+    """Viens spēles cikls"""
+    MIN = 1 
+    MAX = 100
+    MAX_ATTEMPTS = 10
+    merkis = random.randint(MIN, MAX)
+    attempts = 0
+    
+    print(f"\n--- JAUNA SPĒLE ---")
+    print(f"Esmu iedomājies skaitli no {MIN} līdz {MAX}. Tev ir {MAX_ATTEMPTS} mēģinājumi.")
+    
+    while attempts < MAX_ATTEMPTS:
+        prompt = f"Mēģinājums {attempts + 1}/{MAX_ATTEMPTS}. Tavs minējums: "
+        minejums = get_valid_int(prompt, MIN, MAX)
+        attempts += 1
+        
+        result = check_guess(minejums, merkis)
+        
+        if result == "correct":
+            print(f"Lieliski! Uzminēji skaitli {merkis} ar {attempts}. mēģinājumu.")
+            return True
+        
+        print(get_status_message(result))
+        
+    print(f"Žēl, bet mēģinājumi beidzās. Mans skaitlis bija {merkis}.")
+    return False
 
-    print(f"\nEsmu iedomājies skaitli no 1 līdz 100. Tev ir {MAX_MEGINAJUMU_SKAITS} mēģinājumi.")
+def main():
+    """Programmas galvenā cilpa."""
+    print("Skaitļu minēšanas spēle")
+    
+    while True:
+        play_round()
+        if not ask_yes_no("\nVai vēlies spēlēt vēlreiz? (j/n): "):
+            print("Paldies par spēli! Uz redzēšanos!")
+            break
 
-    while MEGINAJUMU_SKAITS < MAX_MEGINAJUMU_SKAITS:
-        IEVADE = input(f"Mēģinājums {MEGINAJUMU_SKAITS + 1}/{MAX_MEGINAJUMU_SKAITS}. Tavs minējums: ")
-
-        # --- Pārbaudām, vai ievade ir skaitlis
-        try:
-            MINEJUMS = int(IEVADE)
-        except ValueError:
-            print("Kļūda: Lūdzu, ievadi veselu skaitli!")
-            continue  # Atgriežas uz cikla sākumu, neskaitot šo kā mēģinājumu
-
-        # --- Pārbaudām vai skaitlis ir vajadzīgajā diapazonā
-        if not (1 <= MINEJUMS <= 100):
-            print("Minējums ir ārpus spēles robežām (1-100)!")
-            continue # Atgriežas uz cikla sākumu, neskaitot šo kā mēģinājumu
-
-        # --- Pieskaitām derīgu mēģinājumu
-        MEGINAJUMU_SKAITS += 1
-
-        # --- Pārbaudām minējumu
-        if MINEJUMS < MINAMAIS_SKAITLIS:
-            print("Par mazu!")
-        elif MINEJUMS > MINAMAIS_SKAITLIS:
-            print("Par lielu!")
-        else:
-            UZMINETS = True
-            break  # Uzminēts! Lecam ārā no iekšējā cikla
-
-# --- Spēles beigu paziņojumi ---
-    if UZMINETS:
-        print(f"Apsveicu! Tu uzminēji skaitli {MINAMAIS_SKAITLIS} ar {MEGINAJUMU_SKAITS}. mēģinājumu.")
-    else:
-        print(f"Diemžēl mēģinājumi beidzās. Mans iedomātais skaitlis bija {MINAMAIS_SKAITLIS}.")        
-
-# --- Vai spēlēt vēlreiz?
-    VELREIZ = input("\nVai vēlies spēlēt vēlreiz? (j/n): ").lower().strip()
-    if VELREIZ != 'j':
-        print("Paldies par spēli! Atā!")
-        break  # Iziet no ārējā cikla un beidz programmu
+if __name__ == "__main__":
+    main()
